@@ -10,11 +10,14 @@ namespace ExpenseTracker.Controllers
 
         private readonly ApplicationDbContext _db;
 
-
+        // DI for expense type
         public ExpenseTypeController(ApplicationDbContext db)
         {
             _db = db;
         }
+
+
+        // constructor that uses the _db
 
         public IActionResult Index()
         {
@@ -38,7 +41,7 @@ namespace ExpenseTracker.Controllers
         public IActionResult Create(ExpenseType obj)
         {
 
-
+            // validation checker
             if (ModelState.IsValid)
             {
                 _db.ExpenseTypes.Add(obj);
@@ -55,12 +58,14 @@ namespace ExpenseTracker.Controllers
         public IActionResult Delete(int? id)
         {
 
-            
+            // validation checker
             if (id == null || id == 0 )
             {
                 return NotFound();
 
             }
+
+            // finds each expense type from the ID
 
             var obj = _db.ExpenseTypes.Find(id);
 
@@ -80,7 +85,7 @@ namespace ExpenseTracker.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost (int? id)
         {
-
+            // finds each expense type from the ID
             var obj = _db.ExpenseTypes.Find(id);
             if (obj == null)
             {
@@ -124,7 +129,7 @@ namespace ExpenseTracker.Controllers
         public IActionResult Update(ExpenseType obj)
         {
 
-
+            // validation checker
             if (ModelState.IsValid)
             {
                 _db.ExpenseTypes.Update(obj);

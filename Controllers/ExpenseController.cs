@@ -12,17 +12,23 @@ namespace ExpenseTracker.Controllers
 
         private readonly ApplicationDbContext _db;
 
-
+        // adds a DB context with dependency injection
         public ExpenseController(ApplicationDbContext db)
         {
             _db = db;
         }
 
+
+        // allows for expense type to linked with expense for create abd update
+       
         public IActionResult Index()
         {
 
-
+            // uses the dependency injection to set the obj list for use with expenses in the view
+            // passes the data to the view using this
             IEnumerable<Expense> objList = _db.Expenses;
+
+            // expense type lambda is used for the drop down or null ref will come up
 
             foreach (var obj in objList)
             {
@@ -35,6 +41,9 @@ namespace ExpenseTracker.Controllers
 
         public IActionResult Create()
         {
+
+            // expense type lambda is used for the drop down 
+
             IEnumerable<SelectListItem> TypeDropDown = _db.ExpenseTypes.Select(i => new SelectListItem
             {
                 Text = i.Name,
@@ -52,7 +61,7 @@ namespace ExpenseTracker.Controllers
         public IActionResult Create(Expense obj)
         {
 
-
+            // valdation check 
             if (ModelState.IsValid)
             {
                 // obj.ExpenseTypeId = 1;
