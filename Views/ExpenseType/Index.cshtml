@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ExpenseTracker.Models.ExpenseType>
+
+
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-primary">Borrowed Items</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn btn-primary" role="button"  asp-controller="ExpenseType" asp-action="Create">New expense type</a>
+            </div>
+        </div>
+    </div>
+
+   
+    @if(Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Expense Name
+                    </th>
+                    <th>
+                        Changes
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+           
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td width="35%">@obj.Name</td>
+                    <td width="30%"> <a class="btn btn-primary mx-1" role="button" asp-controller="ExpenseType" asp-action="Update" asp-route-Id ="@obj.Id">Update</a>
+                                     <a class="btn btn-danger mx-1" role="button" asp-controller="ExpenseType" asp-action="Delete"  asp-route-Id ="@obj.Id" >Delete</a>    
+                    
+                        </td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items created yet</p>
+    }
+
+</div>

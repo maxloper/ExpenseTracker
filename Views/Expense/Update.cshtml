@@ -1,0 +1,55 @@
+﻿@model ExpenseTracker.Models.Expense
+
+<form method="post" asp-action="Update">
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Edit Item</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ExpenseName"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Amount"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="ExpenseTypeId"></label>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="ExpenseName" class="form-control" />
+
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Amount" class="form-control" />
+
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="ExpenseTypeId" asp-items="@ViewBag.TypeDropDown" class="form-control" >
+                            <option selected>-- Select option</option>
+                        </select>
+                        <span asp-validation-for="ExpenseTypeId" class="text-danger"></span>
+                    </div>
+                    
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Update" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
